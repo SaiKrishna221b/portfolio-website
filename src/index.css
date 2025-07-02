@@ -1,0 +1,126 @@
+/* Base styles */
+:root {
+  --primary-color: #FF2D55;
+  --primary-hover: #FF1744;
+  --secondary-color: #4834DF;
+  --accent-color: #00FFF5;
+  --text-color: #FFFFFF;
+  --text-color-light: rgba(255, 255, 255, 0.8);
+  --background-color: #1A1A2E;
+  --card-background: #2A2A3E;
+  --card-background-dark: #1E1E32;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Layout */
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.2;
+  color: var(--accent-color);
+}
+
+/* Links */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+a::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Buttons */
+button {
+  border-radius: 8px;
+  border: 2px solid var(--accent-color);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: transparent;
+  color: var(--accent-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+button:hover {
+  background-color: var(--accent-color);
+  color: var(--background-color);
+  border-color: var(--accent-color);
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--secondary-color);
+}
+
+/* Glow effects */
+.glow {
+  text-shadow: 0 0 10px var(--accent-color),
+             0 0 20px var(--accent-color),
+             0 0 30px var(--accent-color);
+}
+
+.glow-border {
+  box-shadow: 0 0 10px var(--accent-color),
+             0 0 20px var(--accent-color);
+}
+
+/* Dark mode adjustments */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-color: rgba(255, 255, 255, 0.95);
+    --background-color: #1A1A2E;
+  }
+  
+  button {
+    background-color: transparent;
+  }
+  
+  button:hover {
+    background-color: var(--accent-color);
+  }
+}
