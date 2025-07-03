@@ -1,91 +1,93 @@
 import { motion } from 'framer-motion';
-import { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+import SpaceBackground from './SpaceBackground';
 import './Hero.css';
 
 export default function Hero() {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current, alpha: true });
-    
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.position.z = 5;
-
-    // Create stars
-    const starGeometry = new THREE.BufferGeometry();
-    const starMaterial = new THREE.PointsMaterial({ color: 0xFFFFFF, size: 0.1 });
-
-    const starVertices = [];
-    for (let i = 0; i < 5000; i++) {
-      const x = (Math.random() - 0.5) * 2000;
-      const y = (Math.random() - 0.5) * 2000;
-      const z = -Math.random() * 2000;
-      starVertices.push(x, y, z);
-    }
-
-    starGeometry.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
-    const stars = new THREE.Points(starGeometry, starMaterial);
-    scene.add(stars);
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      stars.rotation.y += 0.0002;
-      renderer.render(scene, camera);
-    };
-
-    const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    };
-
-    window.addEventListener('resize', handleResize);
-    animate();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      scene.remove(stars);
-      starGeometry.dispose();
-      starMaterial.dispose();
-      renderer.dispose();
-    };
-  }, []);
-
   return (
     <section className="hero">
-      <canvas ref={canvasRef} className="hero-canvas" />
-      <div className="hero-content">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="hero-title"
+      <SpaceBackground />
+      <div className="hero-container">
+        <div className="hero-content-wrapper">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+            className="personal-info"
+          >
+            <motion.div className="name-container">
+              <motion.h1
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="hero-title"
+              >
+                G Sai Krishna
+              </motion.h1>
+              <motion.div 
+                className="title-glow"
+                animate={{
+                  opacity: [0.5, 1, 0.5],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            </motion.div>
+            <motion.div
+              className="hero-description"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.7 }}
+            >
+              <p>3+ Years experience in:</p>
+              <p>Distributed Systems 🚀 • Databases 💾 • API Security 🔒 • Making people laugh in boring meetings 😄</p>
+            </motion.div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              className="hero-subtitle"
+            >
+              Cloud Architect & AI Integration Expert
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="location"
+            >
+              San Jose, CA
+            </motion.p>
+          </motion.div>
+        </div>
+
+        <motion.div 
+          className="nav-links"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 2 }}
         >
-          Hi, I'm G Sai Krishna
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="hero-subtitle"
-        >
-          Full Stack Developer & Cloud Engineer
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="hero-cta"
-        >
-          <a href="#contact" className="cta-button">
-            Get in Touch
-          </a>
-          <a href="#projects" className="cta-button secondary">
-            View Projects
-          </a>
+          <motion.button
+            onClick={() => document.getElementById('projects').scrollIntoView({ behavior: 'smooth' })}
+            className="nav-link"
+          >
+            Projects
+          </motion.button>
+          <motion.button
+            onClick={() => document.getElementById('certifications').scrollIntoView({ behavior: 'smooth' })}
+            className="nav-link"
+          >
+            Certifications
+          </motion.button>
+          <motion.button
+            onClick={() => document.getElementById('resume').scrollIntoView({ behavior: 'smooth' })}
+            className="nav-link"
+          >
+            Resume
+          </motion.button>
         </motion.div>
       </div>
     </section>

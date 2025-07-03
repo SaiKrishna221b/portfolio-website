@@ -1,12 +1,11 @@
 import { useEffect } from 'react';
-import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
-import Contact from './components/Contact';
+import RelaxSection from './components/RelaxSection';
 import Footer from './components/Footer';
+import FixedContactButton from './components/FixedContactButton';
 import './App.css';
 
 export default function App() {
@@ -20,8 +19,7 @@ export default function App() {
         
         if (targetElement) {
           targetElement.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+            behavior: 'smooth'
           });
         }
       });
@@ -29,15 +27,14 @@ export default function App() {
   }, []);
 
   return (
-    <main className="app">
-      <Navbar />
+    <div className="app">
+      <FixedContactButton />
       <Hero />
       <About />
-      <Skills />
       <Projects />
       <Certifications />
-      <Contact />
+      <RelaxSection />
       <Footer />
-    </main>
+    </div>
   );
 }

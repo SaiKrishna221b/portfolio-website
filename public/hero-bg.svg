@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="skyGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a0b2e"/>
+      <stop offset="50%" stop-color="#4a1259"/>
+      <stop offset="100%" stop-color="#ff1b6b"/>
+    </linearGradient>
+    
+    <!-- Particle effect -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Grid pattern -->
+    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#2de2e6" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="url(#skyGradient)"/>
+
+  <!-- Sun -->
+  <circle cx="960" cy="600" r="150" fill="#ff0055" filter="url(#glow)"/>
+  <circle cx="960" cy="600" r="120" fill="#ff3380"/>
+
+  <!-- Grid floor -->
+  <path d="M 0 750 L 960 600 L 1920 750 L 1920 1080 L 0 1080 Z" fill="url(#grid)"/>
+
+  <!-- City silhouette -->
+  <path d="M 0 400 L 100 380 L 150 420 L 200 350 L 300 370 L 400 320 L 500 380 L 600 350 L 700 400 L 800 320 L 900 370 L 1000 330 L 1100 390 L 1200 340 L 1300 380 L 1400 330 L 1500 370 L 1600 340 L 1700 390 L 1800 350 L 1920 380 L 1920 750 L 0 750 Z" fill="#130726"/>
+
+  <!-- Palm trees -->
+  <g transform="translate(200,600)" fill="#000000">
+    <path d="M 0 0 C 20 -40 40 -60 60 -40 C 40 -20 20 -10 0 0 Z"/>
+    <rect x="25" y="0" width="10" height="40"/>
+  </g>
+  <g transform="translate(1700,620)" fill="#000000">
+    <path d="M 0 0 C 20 -40 40 -60 60 -40 C 40 -20 20 -10 0 0 Z"/>
+    <rect x="25" y="0" width="10" height="40"/>
+  </g>
+
+  <!-- Floating particles -->
+  <g filter="url(#glow)">
+    <circle cx="300" cy="200" r="2" fill="#2de2e6" opacity="0.8">
+      <animate attributeName="cy" values="200;180;200" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="800" cy="300" r="2" fill="#ff3380" opacity="0.8">
+      <animate attributeName="cy" values="300;280;300" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1200" cy="250" r="2" fill="#2de2e6" opacity="0.8">
+      <animate attributeName="cy" values="250;230;250" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- Glitch effect -->
+  <g opacity="0.1">
+    <animate attributeName="transform" values="translate(0,0);translate(2,-2);translate(-2,2);translate(0,0)" dur="0.5s" repeatCount="indefinite"/>
+    <rect x="400" y="300" width="100" height="5" fill="#ff3380"/>
+    <rect x="1200" y="400" width="150" height="5" fill="#2de2e6"/>
+  </g>
+</svg>

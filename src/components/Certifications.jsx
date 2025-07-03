@@ -1,30 +1,44 @@
 import { motion } from 'framer-motion';
 import './Certifications.css';
+import awsLogo from '../assets/aws.png';
+import gcpLogo from '../assets/googlecloud.png';
+import azureLogo from '../assets/azure.png';
 
 const certifications = [
   {
     name: 'AWS Solutions Architect Professional',
     issuer: 'Amazon Web Services',
     date: '2023',
-    icon: '🏆'
+    icon: awsLogo,
+    link: 'https://www.credly.com/badges/your-aws-badge-id'
   },
   {
     name: 'Google Cloud Professional Cloud Architect',
     issuer: 'Google Cloud',
     date: '2023',
-    icon: '🎯'
+    icon: gcpLogo,
+    link: 'https://www.credential.net/your-gcp-credential-id'
   },
   {
-    name: 'Certified Kubernetes Administrator',
-    issuer: 'Cloud Native Computing Foundation',
-    date: '2022',
-    icon: '⚙️'
+    name: 'HashiCorp Certified: Terraform Associate',
+    issuer: 'HashiCorp',
+    date: '2023',
+    icon: 'https://www.datocms-assets.com/2885/1620155116-brandhcterraformverticalcolor.svg',
+    link: 'https://www.credly.com/badges/your-terraform-badge-id'
   },
   {
-    name: 'Azure Solutions Architect Expert',
+    name: 'Microsoft Certified: Azure AI Engineer Associate',
     issuer: 'Microsoft',
-    date: '2022',
-    icon: '🚀'
+    date: '2023',
+    icon: azureLogo,
+    link: 'https://learn.microsoft.com/en-us/users/your-ms-profile/transcript/your-cert-id'
+  },
+  {
+    name: 'Microsoft Certified: Azure Developer Associate',
+    issuer: 'Microsoft',
+    date: '2023',
+    icon: azureLogo,
+    link: 'https://learn.microsoft.com/en-us/users/your-ms-profile/transcript/your-cert-id'
   }
 ];
 
@@ -35,7 +49,9 @@ const CertificationCard = ({ certification, index }) => (
     transition={{ duration: 0.5, delay: index * 0.1 }}
     className="certification-card"
   >
-    <span className="certification-icon">{certification.icon}</span>
+    <a href={certification.link} target="_blank" rel="noopener noreferrer" className="certification-icon">
+      <img src={certification.icon} alt={`${certification.name} logo`} />
+    </a>
     <div className="certification-content">
       <h3>{certification.name}</h3>
       <p className="certification-issuer">{certification.issuer}</p>

@@ -11,36 +11,13 @@ export default function About() {
   return (
     <section id="about" className="about">
       <div className="about-container">
-        <motion.div className="about-header" {...fadeInUp}>
-          <h1>G SAI KRISHNA</h1>
-          <div className="contact-info">
-            <a href="mailto:sai.krishna221b@gmail.com">sai.krishna221b@gmail.com</a> |
-            <a href="tel:+14082104059">(408)-210-4059</a> |
-            <a href="https://linkedin.com/in/gsaikrishna221" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
-            <a href="https://github.com/SaiKrishna221b" target="_blank" rel="noopener noreferrer">GitHub</a> |
-            <span>San Jose, CA</span>
-          </div>
-        </motion.div>
+
 
         <motion.div 
           {...fadeInUp}
           transition={{ delay: 0.2 }}
           className="about-content"
         >
-          <div className="education-section">
-            <h2>Education</h2>
-            <div className="education-item">
-              <h3>San Jose State University</h3>
-              <p>MS in Software Engineering (Expected May 2025)</p>
-              <p>Relevant Coursework: Enterprise Software, Network Design, Cloud Infrastructure, Machine Learning, Distributed Systems</p>
-            </div>
-            <div className="education-item">
-              <h3>Bhilai Institute of Technology</h3>
-              <p>BTech in Computer Science Engineering</p>
-              <p>Member: IEEE, CodeClub, BusinessHub, TEDx BITD</p>
-            </div>
-          </div>
-
           <div className="experience-section">
             <h2>Experience</h2>
             <div className="experience-item">
@@ -66,25 +43,17 @@ export default function About() {
             </div>
           </div>
 
-          <div className="skills-section">
-            <h2>Technical Skills</h2>
-            <div className="skills-grid">
-              <div className="skill-category">
-                <h3>Programming Languages</h3>
-                <p>Java, Spring Boot, Hibernate, Python, Django, Flask, Node.js, Go, JavaScript, Bash</p>
-              </div>
-              <div className="skill-category">
-                <h3>Distributed Systems</h3>
-                <p>REST, GraphQL, gRPC, SOAP, Maven, Gradle, Dynatrace, Grafana, Linux</p>
-              </div>
-              <div className="skill-category">
-                <h3>Databases</h3>
-                <p>PostgreSQL, MySQL, Cassandra, CockroachDB, Redis, Kafka, RabbitMQ</p>
-              </div>
-              <div className="skill-category">
-                <h3>DevOps/Infrastructure</h3>
-                <p>Kubernetes, Jenkins, Ansible, AWS, GCP, GitHub Actions, Terraform, NGINX, ELK, OpenTelemetry, CircleCI</p>
-              </div>
+          <div className="education-section">
+            <h2>Education</h2>
+            <div className="education-item">
+              <h3>San Jose State University</h3>
+              <p>MS in Software Engineering (Expected May 2025)</p>
+              <p>Relevant Coursework: Enterprise Software, Network Design, Cloud Infrastructure, Machine Learning, Distributed Systems</p>
+            </div>
+            <div className="education-item">
+              <h3>Bhilai Institute of Technology</h3>
+              <p>BTech in Computer Science Engineering</p>
+              <p>Member: IEEE, CodeClub, BusinessHub, TEDx BITD</p>
             </div>
           </div>
         </motion.div>
