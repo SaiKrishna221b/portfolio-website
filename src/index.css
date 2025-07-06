@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Chakra+Petch:wght@400;600&display=swap');
+
 :root {
   --primary-color: #FF2D55;
   --secondary-color: #4834DF;
@@ -21,7 +23,3 @@ body {
   font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-
-/* Add this in the head of your HTML file */
-```html:c%3A%5CUsers%5Csaikr%5COneDrive%5CDocuments%5Cwebsite%5Cindex.html
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Chakra+Petch:wght@400;600&display=swap" rel="stylesheet">
