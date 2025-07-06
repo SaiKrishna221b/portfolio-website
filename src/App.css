@@ -1,0 +1,650 @@
+/* For main headings - full retro effect */
+h1, h2 {
+  font-family: 'Press Start 2P', cursive;
+  letter-spacing: 1px;
+  line-height: 1.6;
+}
+
+/* For subheadings and important elements - modern tech look */
+h3, h4, .connect-button, .nav-link {
+  font-family: 'Chakra Petch', sans-serif;
+  font-weight: 600;
+}
+
+/* Body text - modern tech look but very readable */
+p, li, .education-details, .experience-details {
+  font-family: 'Chakra Petch', system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.app {
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background-color: transparent;
+}
+
+.connect-container {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1000;
+}
+
+.connect-button {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(16px);
+  border: none;
+  border-radius: 16px;
+  padding: 0.8rem 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 4px 24px -8px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.connect-button::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(192, 192, 192, 0.6),
+    rgba(255, 255, 255, 0.4)
+  );
+  mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+               linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+  animation: pulsate 8s infinite linear;
+}
+
+@keyframes pulsate {
+  0% {
+    opacity: 0.3;
+    box-shadow: 
+      0 0 20px rgba(255, 255, 255, 0.1),
+      inset 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 
+      0 0 30px rgba(255, 255, 255, 0.3),
+      inset 0 0 30px rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    opacity: 0.3;
+    box-shadow: 
+      0 0 20px rgba(255, 255, 255, 0.1),
+      inset 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.connect-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+  border-color: rgba(0, 255, 245, 0.4);
+  box-shadow: 0 0 30px rgba(0, 255, 245, 0.2);
+}
+
+.connect-button:hover::before {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 245, 0.4),
+    rgba(0, 255, 245, 0.6),
+    rgba(0, 255, 245, 0.4)
+  );
+  box-shadow: 
+    0 0 40px rgba(0, 255, 245, 0.4),
+    inset 0 0 40px rgba(0, 255, 245, 0.4);
+}
+
+.connect-container:hover .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 0.75rem;
+  min-width: 220px;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+.dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
+  color: rgba(255, 255, 255, 1);
+}
+
+.icon {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.dropdown-item:hover .icon {
+  opacity: 1;
+}
+
+.sections-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: overlay;
+  overflow-x: hidden;
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+  background-color: #000033;  /* Add this line to match space background */
+}
+
+/* Webkit scrollbar customization */
+.sections-container::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+.sections-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.sections-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+/* Firefox scrollbar customization */
+.sections-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.section-content {
+  max-width: 1200px;
+  width: 100%;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.section h2 {
+  font-size: 3rem;
+  margin-bottom: 3rem;  /* Increased from 2rem to 3rem (50% increase) */
+  background: linear-gradient(120deg, #fff, #00fff5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.education-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.75rem;  /* Increased from 0.5rem to 0.75rem (50% increase) */
+}
+
+.profile-section {
+  padding: 2rem;
+  color: white;
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.experience-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.experience-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.experience-list li {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.experience-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #61dafb;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(120deg, #fff, #00fff5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card h4 {
+  font-size: 1.2rem;
+  color: #00fff5;
+  margin-bottom: 0.5rem;
+}
+
+.card .period,
+.card .tech-stack,
+.card .issuer,
+.card .date,
+.card .credential-id {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.card-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.education-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.education-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  border-left: 2px solid rgba(0, 255, 245, 0.2);
+  transition: all 0.3s ease;
+}
+
+.certification-card:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-left-color: #00fff5;
+}
+
+.certification-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.card .tech-stack {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+.education-card:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-left-color: #00fff5;
+}
+
+.education-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.15rem;
+}
+
+.transcript-link {
+  font-size: 0.9rem;
+  color: #00fff5;
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(0, 255, 245, 0.4);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 0.5rem;
+  background: transparent;
+}
+
+.verify-link:hover {
+  background: rgba(0, 255, 245, 0.1);
+  border-color: #00fff5;
+}
+
+.education-header h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(120deg, #fff, #00fff5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.education-header h4 {
+  font-size: 0.9rem;
+  margin-bottom: 0.1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.education-header .grad-date {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.35rem;
+}
+
+.education-details {
+  margin-top: 0.35rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.education-details h5 {
+  font-size: 0.85rem;
+  color: rgba(0, 255, 245, 0.8);
+  margin-bottom: 0.15rem;
+}
+
+.education-details .courses p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+.education-details .memberships {
+  margin-top: 1rem;
+}
+
+.education-details .memberships ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.education-details .memberships li {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 255, 245, 0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.experience-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  min-height: 400px;
+}
+
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tab {
+  padding: 1.05rem;
+  cursor: pointer;
+  border-left: 2px solid rgba(0, 255, 245, 0.2);
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.8);
+  margin-bottom: 1px;
+}
+
+.tab:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-left-color: rgba(0, 255, 245, 0.6);
+}
+
+.tab.active {
+  background: rgba(0, 0, 0, 1);
+  border-left-color: #00fff5;
+}
+
+.tab h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tab p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.tab-content {
+  flex: 1;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.experience-details h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.experience-details h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.experience-details .period {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1rem;
+}
+
+.experience-details .skills {
+  font-size: 1rem;
+  color: rgba(0, 255, 245, 0.8);
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 255, 245, 0.1);
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.experience-details .achievements {
+  list-style-type: none;
+  padding: 0;
+}
+
+.experience-details .achievements li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.experience-details .achievements li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #00fff5;
+  font-size: 1.2rem;
+}
+
+/* Add these styles for certification cards */
+.certification-card {
+  border-left: 2px solid rgba(0, 255, 245, 0.2);
+  padding: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.certification-card:hover {
+  border-left-color: #00fff5;
+  background: rgba(0, 0, 0, 1);
+}
+
+.certification-header {
+  margin-bottom: 1rem;
+}
+
+.certification-header h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.certification-header .date {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.card .period,
+.card .tech-stack,
+.card .issuer,
+.card .date,
+.card .credential-id {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+/* Modern, professional typography */
+h1, h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h3, h4, .connect-button, .nav-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+p, li, .education-details, .experience-details {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Add slightly tighter letter-spacing for better readability */
+.education-details, .experience-details {
+  letter-spacing: -0.01em;
+}
+
+.section-content {
+  max-width: 1200px;
+  width: 100%;
+  padding: 1rem 2rem;
+  padding-top: 4rem;
+  justify-content: flex-start;
+  color: rgba(255, 255, 255, 0.9);
+}
