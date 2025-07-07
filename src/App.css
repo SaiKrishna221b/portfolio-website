@@ -165,35 +165,20 @@ p, li, .education-details, .experience-details {
 
 .sections-container {
   scroll-snap-type: y mandatory;
-  overflow-y: overlay;
+  overflow-y: auto;
   overflow-x: hidden;
   height: 100vh;
   position: relative;
   z-index: 2;
-  background-color: #000033;  /* Add this line to match space background */
+  background-color: #000033;
 }
 
-/* Webkit scrollbar customization */
-.sections-container::-webkit-scrollbar {
-  width: 8px;
-  background: transparent;
-}
+/* Remove these blocks:
+.sections-container::-webkit-scrollbar {...}
+.sections-container::-webkit-scrollbar-thumb {...}
+.sections-container::-webkit-scrollbar-thumb:hover {...}
+.sections-container {...} (the Firefox scrollbar styles) */
 
-.sections-container::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  border: 2px solid transparent;
-  background-clip: content-box;
-}
-
-.sections-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
-  border: 2px solid transparent;
-  background-clip: content-box;
-}
-
-/* Firefox scrollbar customization */
 .sections-container {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
@@ -385,24 +370,37 @@ p, li, .education-details, .experience-details {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.15rem;
+  margin-top: 1rem;
 }
 
-.transcript-link {
-  font-size: 0.9rem;
-  color: #00fff5;
-  text-decoration: none;
-  padding: 0.4rem 0.8rem;
+.certification-card {
+  position: relative;
+  min-height: 180px;  /* Ensure enough space for content and button */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-actions {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  margin-top: auto;
+}
+
+.view-text-btn {
+  background: rgba(0, 255, 245, 0.1);
   border: 1px solid rgba(0, 255, 245, 0.4);
   border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  color: #00fff5;
+  font-size: 0.9rem;
+  cursor: pointer;
   transition: all 0.3s ease;
-  display: inline-block;
-  margin-top: 0.5rem;
-  background: transparent;
+  text-decoration: none;
 }
 
-.verify-link:hover {
-  background: rgba(0, 255, 245, 0.1);
+.view-text-btn:hover {
+  background: rgba(0, 255, 245, 0.2);
   border-color: #00fff5;
 }
 

@@ -55,9 +55,11 @@ const Certifications = () => {
             >
               <h3>{cert.name}</h3>
               <p className="date">{cert.date}</p>
-              <a href={cert.link} target="_blank" rel="noopener noreferrer" className="verify-link">
-                Verify Credential
-              </a>
+              <div className="card-actions">
+                <a href={cert.link} target="_blank" rel="noopener noreferrer" className="view-text-btn">
+                  View
+                </a>
+              </div>
             </motion.div>
           ))}
         </div>

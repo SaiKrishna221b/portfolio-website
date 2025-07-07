@@ -39,7 +39,7 @@ const Education = () => {
               <div className="education-header">
                 <div className="education-title">
                   <h3>{edu.school}</h3>
-                  <a href={edu.transcriptLink} className="transcript-link" target="_blank" rel="noopener noreferrer">
+                  <a href={edu.transcriptLink} className="view-text-btn" target="_blank" rel="noopener noreferrer">
                     View Transcript
                   </a>
                 </div>
