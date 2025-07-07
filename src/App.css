@@ -170,14 +170,28 @@ p, li, .education-details, .experience-details {
   height: 100vh;
   position: relative;
   z-index: 2;
-  background-color: #000033;
+  background-color: transparent;
 }
 
-/* Remove these blocks:
-.sections-container::-webkit-scrollbar {...}
-.sections-container::-webkit-scrollbar-thumb {...}
-.sections-container::-webkit-scrollbar-thumb:hover {...}
-.sections-container {...} (the Firefox scrollbar styles) */
+.card-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Add a specific class for the hero section */
+.card-section:first-child {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+}
 
 .sections-container {
   scrollbar-width: thin;
