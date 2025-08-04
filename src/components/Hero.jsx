@@ -49,6 +49,15 @@ export default function Hero() {
               />
             </motion.div>
             
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="research-line"
+            >
+              Currently advancing Generative AI Research @ San Jose State University
+            </motion.p>
+            
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

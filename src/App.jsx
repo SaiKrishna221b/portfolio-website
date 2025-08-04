@@ -1,4 +1,5 @@
 import Hero from './components/Hero';
+import AboutMe from './components/AboutMe';
 import Experience from './components/Experience';
 import Education from './components/Education';
 import Projects from './components/Projects';
@@ -15,6 +16,9 @@ function App() {
       <div className="sections-container">
         <div className="card-section">
           <Hero />
+        </div>
+        <div className="card-section" id="about">
+          <AboutMe />
         </div>
         <div className="card-section" id="experience">
           <Experience />

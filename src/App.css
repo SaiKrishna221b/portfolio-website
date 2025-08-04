@@ -1,21 +1,21 @@
-/* For main headings - full retro effect */
+/* Modern, professional typography */
 h1, h2 {
-  font-family: 'Press Start 2P', cursive;
-  letter-spacing: 1px;
-  line-height: 1.6;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
-/* For subheadings and important elements - modern tech look */
 h3, h4, .connect-button, .nav-link {
-  font-family: 'Chakra Petch', sans-serif;
-  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
-/* Body text - modern tech look but very readable */
 p, li, .education-details, .experience-details {
-  font-family: 'Chakra Petch', system-ui, sans-serif;
+  font-family: 'Inter', sans-serif;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 .app {
@@ -169,7 +169,7 @@ p, li, .education-details, .experience-details {
   overflow-x: hidden;
   height: 100vh;
   position: relative;
-  z-index: 2;
+  z-index: 1;
   background-color: transparent;
 }
 
@@ -187,10 +187,10 @@ p, li, .education-details, .experience-details {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Add a specific class for the hero section */
 .card-section:first-child {
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
+  z-index: 2;
 }
 
 .sections-container {
@@ -199,14 +199,465 @@ p, li, .education-details, .experience-details {
 }
 
 .section {
+  padding: 4rem;
+  padding-bottom: 12rem;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.section-content {
+  max-width: 1200px;
+  width: 100%;
+  padding: 1rem 2rem;
+  padding-top: 4rem;
+  justify-content: flex-start;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.section h2 {
+  font-size: 3rem;
+  margin-bottom: 3rem;  /* Increased from 2rem to 3rem (50% increase) */
+  background: linear-gradient(120deg, #fff, #00fff5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.education-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.75rem;  /* Increased from 0.5rem to 0.75rem (50% increase) */
+}
+
+.profile-section {
+  padding: 2rem;
+  color: white;
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.experience-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.experience-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.experience-list li {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.experience-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #61dafb;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(120deg, #fff, #00fff5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.card h4 {
+  font-size: 1.2rem;
+  color: #00fff5;
+  margin-bottom: 0.5rem;
+}
+
+.card .period,
+.card .tech-stack,
+.card .issuer,
+.card .date,
+.card .credential-id {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.card-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.education-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+
+.education-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  border-left: 2px solid rgba(0, 255, 245, 0.2);
+  transition: all 0.3s ease;
+}
+
+.certification-card:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-left-color: #00fff5;
+}
+
+.certification-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.card .tech-stack {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+}
+
+.education-card:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-left-color: #00fff5;
+}
+
+.education-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.certification-card {
+  position: relative;
+  min-height: 180px;  /* Ensure enough space for content and button */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-actions {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  margin-top: auto;
+}
+
+.view-text-btn {
+  background: rgba(0, 255, 245, 0.1);
+  border: 1px solid rgba(0, 255, 245, 0.4);
+  border-radius: 4px;
+  padding: 0.4rem 0.8rem;
+  color: #00fff5;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.view-text-btn:hover {
+  background: rgba(0, 255, 245, 0.2);
+  border-color: #00fff5;
+}
+
+.education-header h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(120deg, #fff, #00fff5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.education-header h4 {
+  font-size: 0.9rem;
+  margin-bottom: 0.1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.education-header .grad-date {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.35rem;
+}
+
+.education-details {
+  margin-top: 0.35rem;
+  padding-top: 0.35rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.education-details h5 {
+  font-size: 0.85rem;
+  color: rgba(0, 255, 245, 0.8);
+  margin-bottom: 0.15rem;
+}
+
+.education-details .courses p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+  font-size: 0.9rem;
+}
+
+.education-details .memberships {
+  margin-top: 1rem;
+}
+
+.education-details .memberships ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.education-details .memberships li {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 255, 245, 0.1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.experience-container {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  min-height: 400px;
+}
+
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tab {
+  padding: 1.05rem;
+  cursor: pointer;
+  border-left: 2px solid rgba(0, 255, 245, 0.2);
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.8);
+  margin-bottom: 1px;
+}
+
+.tab:hover {
+  background: rgba(0, 0, 0, 0.9);
+  border-left-color: rgba(0, 255, 245, 0.6);
+}
+
+.tab.active {
+  background: rgba(0, 0, 0, 1);
+  border-left-color: #00fff5;
+}
+
+.tab h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tab p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.tab-content {
+  flex: 1;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.experience-details h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.experience-details h4 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.experience-details .period {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 1rem;
+}
+
+.experience-details .skills {
+  font-size: 1rem;
+  color: rgba(0, 255, 245, 0.8);
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 255, 245, 0.1);
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.experience-details .achievements {
+  list-style-type: none;
+  padding: 0;
+}
+
+.experience-details .achievements li {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.experience-details .achievements li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #00fff5;
+  font-size: 1.2rem;
+}
+
+/* Add these styles for certification cards */
+.certification-card {
+  border-left: 2px solid rgba(0, 255, 245, 0.2);
+  padding: 1rem;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.8);
+  position: relative;
+  min-height: 180px;  /* Ensure enough space for content and button */
+  display: flex;
+  flex-direction: column;
+}
+
+.certification-card:hover {
+  border-left-color: #00fff5;
+  background: rgba(0, 0, 0, 1);
+}
+
+.certification-header {
+  margin-bottom: 1rem;
+}
+
+.certification-header h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.certification-header .date {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.card .period,
+.card .tech-stack,
+.card .issuer,
+.card .date,
+.card .credential-id {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.card-section:nth-child(2),
+.card-section:nth-child(3),
+.card-section:nth-child(4),
+.card-section:nth-child(5) {
+  background: #000000;
+  z-index: 2;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure hero section keeps space background */
+.hero-section {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+}
+
+/* Remove the old generic section background */
+.section {
   min-height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
   position: relative;
+  /* Remove the old background and backdrop-filter */
 }
 
 .section-content {
@@ -627,6 +1078,70 @@ p, li, .education-details, .experience-details {
   line-height: 1.6;
 }
 
+/* Add these styles to your existing App.css file */
+
+/* Experience Toggle Styles */
+.experience-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  gap: 0;
+}
+
+.toggle-btn {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid #00ffff;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  font-family: 'Chakra Petch', monospace;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.toggle-btn:first-child {
+  border-radius: 25px 0 0 25px;
+  border-right: 1px solid #00ffff;
+}
+
+.toggle-btn:last-child {
+  border-radius: 0 25px 25px 0;
+  border-left: 1px solid #00ffff;
+}
+
+.toggle-btn:hover {
+  background: rgba(0, 255, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+}
+
+.toggle-btn.active {
+  background: linear-gradient(135deg, #00ffff, #0099cc);
+  color: #000033;
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
+}
+
+.toggle-btn.active:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 255, 255, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .experience-toggle {
+    margin-bottom: 1.5rem;
+  }
+  
+  .toggle-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+  }
+}
+
 /* Modern, professional typography */
 h1, h2 {
   font-family: 'Space Grotesk', sans-serif;
@@ -659,4 +1174,154 @@ p, li, .education-details, .experience-details {
   padding-top: 4rem;
   justify-content: flex-start;
   color: rgba(255, 255, 255, 0.9);
+}
+
+/* About Me Section */
+.about-me {
+  padding: 0 4rem 12rem 4rem;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.about-content-split {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.radar-chart-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 580px;
+}
+
+.radar-chart {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 3rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  width: fit-content;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.radar-chart:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 255, 245, 0.4);
+  box-shadow: 0 0 30px rgba(0, 255, 245, 0.2);
+  transform: translateY(-5px);
+}
+
+.radar-chart svg {
+  filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.3));
+}
+
+.info-cards-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: flex-end;
+  height: 580px;
+  justify-content: space-between;
+  margin-top: 0;
+}
+
+.info-card {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  padding: 1.3rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  flex: 1;
+  min-height: 110px;
+  max-height: 130px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.info-card:hover {
+  background: rgba(0, 0, 0, 0.5);
+  border-color: rgba(0, 255, 245, 0.4);
+  box-shadow: 0 0 30px rgba(0, 255, 245, 0.2);
+  transform: translateY(-5px);
+}
+
+.info-card h3 {
+  color: rgba(0, 255, 255, 1);
+  font-size: 1.05rem;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.info-card:hover h3 {
+  color: #00fff5;
+  text-shadow: 0 0 10px rgba(0, 255, 245, 0.5);
+}
+
+.info-card p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-align: left;
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .about-content-split {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .info-cards-container {
+    align-items: center;
+  }
+  
+  .radar-chart {
+    padding: 2rem;
+  }
+  
+  .radar-chart svg {
+    width: 400px;
+    height: 400px;
+  }
+  
+  .info-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .radar-chart svg {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .info-card {
+    padding: 1.5rem;
+  }
 }

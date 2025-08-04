@@ -8,17 +8,17 @@ const Certifications = () => {
       link: "https://www.credly.com/badges/21b56ef0-b44f-4746-ab36-34d1625ab6a8/public_url"
     },
     {
-      name: "AWS Solutions Architect",
+      name: "AWS Certified Solutions Architect (Associate)",
       date: "Sep 2024",
       link: "https://www.credly.com/badges/ea5da477-5917-491f-a2b7-636898391a7a/linked_in_profile"
     },
     {
-      name: "AWS Cloud Practitioner",
+      name: "AWS Certified Cloud Practitioner",
       date: "Jun 2024",
       link: "https://www.credly.com/badges/051e50a7-c21d-49e7-8c31-21753b631b17"
     },
     {
-      name: "HashiCorp Terraform Associate",
+      name: "HashiCorp Terraform Associate 003",
       date: "Aug 2024",
       link: "https://www.credly.com/badges/9f997351-49df-4e7a-a577-4606069c7204/public_url"
     },
@@ -28,7 +28,7 @@ const Certifications = () => {
       link: "https://learn.microsoft.com/en-us/users/saikrishna-8883/credentials/57f8512740df90ae?ref=https%3A%2F%2Fwww.linkedin.com%2F"
     },
     {
-      name: "Microsoft Azure Serverless Computing",
+      name: "Coursera: Azure Serverless",
       date: "Mar 2024",
       link: "https://www.coursera.org/account/accomplishments/verify/G7Y42CJF3G7G?utm_source=link&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=project"
     }
