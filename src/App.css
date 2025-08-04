@@ -94,20 +94,20 @@ p, li, .education-details, .experience-details {
 
 .connect-button:hover {
   background: rgba(0, 0, 0, 0.8);
-  border-color: rgba(0, 255, 245, 0.4);
-  box-shadow: 0 0 30px rgba(0, 255, 245, 0.2);
+  border-color: rgba(0, 255, 245, 1.0);
+  box-shadow: 0 0 30px rgba(0, 255, 245, 0.6);
 }
 
 .connect-button:hover::before {
   background: linear-gradient(
     135deg,
-    rgba(0, 255, 245, 0.4),
-    rgba(0, 255, 245, 0.6),
-    rgba(0, 255, 245, 0.4)
+    rgba(0, 255, 245, 1.0),
+    rgba(0, 255, 245, 1.0),
+    rgba(0, 255, 245, 1.0)
   );
   box-shadow: 
-    0 0 40px rgba(0, 255, 245, 0.4),
-    inset 0 0 40px rgba(0, 255, 245, 0.4);
+    0 0 40px rgba(0, 255, 245, 1.0),
+    inset 0 0 40px rgba(0, 255, 245, 1.0);
 }
 
 .connect-container:hover .dropdown-menu {
