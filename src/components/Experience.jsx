@@ -7,82 +7,76 @@ const Experience = () => {
 
   const experiences = [
     {
-      title: "Research Associate",
+      title: "Research Associate – AI Quality",
       company: "SAN JOSE STATE UNIVERSITY",
       period: "Jun 2025 – Present",
       techAchievements: [
-        "Exploring synthesis-focused GenAI techniques that merge document structure, tone, and semantics through parsing ML methods to generate actionable insights, accelerating niche business decision-making under Prof. Jerry Gao"
+        "Exploring synthesis focused GenAI techniques that merge document structure, tone and semantics through ML parsing methods to generate actionable insights, accelerating niche business decision making."
       ],
       nonTechAchievements: [
-        "Researching advanced AI techniques to help businesses make faster, more informed decisions by analyzing document patterns and content structure under Prof. Jerry Gao"
+        "Researching advanced AI techniques to help businesses make faster, more informed decisions by analyzing document patterns and content structure."
       ],
-      skills: "Python, PyTorch, OpenCV, LLMs"
+      skills: "Python, REST, OpenCV, PyTorch, LLMs, Git"
     },
     {
-      title: "Software Engineer",
+      title: "Software Engineer – Nike EU",
       company: "COGNIZANT TECHNOLOGY SOLUTIONS",
-      period: "Oct 2021 - Aug 2023",
+      period: "Nov 2022 – Aug 2023",
       techAchievements: [
-        "2 teams, contributed 9 services addressing NIKE's critical data retrieval, API endpoint security and uptime SLAs",
-        "Led full-cycle development of business-critical features from ideation and prototyping to production deployment improving feature release velocity by 30%",
-        "Designed, developed, maintained Java Spring Boot microservices (Spring MVC, Data, Batch, WebFlux, Hibernate) for financial/customer management systems supporting high scale concurrent database transactions",
-        "Led PostgreSQL migration to partitioned, sharded architecture migration; created seed & verification scripts to ensure 100% data integrity of new database instances",
-        "Containerized services with Docker and deployed to Kubernetes using Helm; introduced blue-green releases and automated rollbacks via Jenkins pipelines, cutting downtime incidents by 40%",
-        "Implemented Layer 7 load balancing solution with Nginx Kubernetes Ingress Controller, involving Helm charts, YAML configurations, request-based routing through incoming HTTP header parsing, reduced application latency by 12%",
-        "Onboarded 5 interns for code versioning, production environment leading to smoother onboarding and positive assimilation experience"
+        "Engineered highly scalable distributed pricing & inventory GraphQL and REST APIs serving 90K+ requests/day with <200ms latency during flash sales by creating new Spring Boot services and optimizing existing NGINX workloads.",
+        "Decomposed a legacy core into 12 Java microservices; led end to end prototyping and implementation with testing of the microservice suite.",
+        "Reduced MTTR by 40% for 200K+ concurrent user events via Kubernetes readiness probes, Helm health checks, SLO dashboards, and GitOps rollbacks.",
+        "Elevated reliability with contract, integration, and load tests (JUnit, Gatling) and CI quality gates in Jenkins leading to reduced failed requests on high-traffic paths.",
+        "Prevented 20+ daily integration errors from impacting checkout by building serverless AWS Lambda validations and circuit-breaker alerts integrated with AWS CloudWatch and AWS SQS.",
+        "Cut client render time 35% by streamlining JSON payloads and aligning API response contracts serving React frontends.",
+        "Halved onboarding time by publishing Java Spring Boot starter kits, CI/CD templates, and technical guides; led documentation & code reviews across 12+ services and mentored interns on a variety of internship projects."
       ],
       nonTechAchievements: [
-        "Collaborated across 2 teams to build 9 essential services for NIKE, ensuring their systems stayed secure and reliable",
-        "Led complete development of important business features from initial ideas to final launch, making releases 30% faster",
-        "Built and maintained robust backend systems for financial and customer management that handle thousands of simultaneous users",
-        "Successfully migrated large databases to a more efficient structure while ensuring no data was lost during the transition",
-        "Modernized application deployment process using containerization technology, reducing system failures by 40%",
-        "Optimized application performance by implementing smart traffic distribution, making the system 12% faster for users",
-        "Mentored 5 new team members, helping them integrate smoothly into the development workflow and company culture"
+        "Built highly scalable systems handling 90,000+ daily requests with lightning-fast response times during peak shopping periods.",
+        "Led the transformation of a large legacy system into 12 smaller, more manageable services, improving overall system reliability.",
+        "Reduced system recovery time by 40% for applications serving 200,000+ concurrent users through improved monitoring and automated recovery processes.",
+        "Enhanced system reliability through comprehensive testing strategies, significantly reducing failures during high-traffic periods.",
+        "Prevented 20+ daily system errors from affecting customer checkout experience through proactive monitoring and alerting systems.",
+        "Improved customer experience by making web pages load 35% faster through optimized data delivery.",
+        "Streamlined team onboarding process, reducing new developer setup time by 50% while mentoring multiple interns and leading code quality initiatives."
       ],
-      skills: "Java, Python, AWS CDK, GraphQL, MySQL, PostgreSQL, Linux, Redis"
+      skills: "Java, Spring Boot, GraphQL, REST, Docker, Kubernetes, Splunk, NGINX"
     },
     {
-      title: "Software Engineer Intern II",
+      title: "Software Engineer Intern",
       company: "COGNIZANT TECHNOLOGY SOLUTIONS",
-      period: "Jun 2021 - Sep 2021",
+      period: "Apr 2022 – Nov 2022",
       techAchievements: [
-        "Engineered secure OAuth2/MFA authentication on Spring Boot for internal portal—internal dashboarding on Grafana, Splunk, OpenTelemetry",
-        "Automated pipelines and test triggers using Bash scripts on Jenkins, reducing manual QA testing delays by 40%"
+        "Developed containerized Python REST services handling 5K+ daily requests; validated via CI-based integration and load tests in GitHub Actions.",
+        "Modeled PostgreSQL schemas and queries; improved p95 query latency by analyzing and optimizing JOIN heavy queries.",
+        "Developed functional tests and integrated dependency scans, and load testing into CI, reducing post-deployment defects."
       ],
       nonTechAchievements: [
-        "Built secure login systems with multi-factor authentication for internal company tools and monitoring dashboards",
-        "Automated testing processes to reduce manual work, cutting testing delays by 40% and improving team efficiency"
+        "Built containerized web services handling 5,000+ daily requests with automated testing to ensure reliability.",
+        "Optimized database performance, significantly improving query response times through data structure analysis and optimization.",
+        "Implemented comprehensive testing strategies that reduced bugs and issues after software deployment."
       ],
-      skills: "Java Spring Boot, AWS CDK, Linux, .NET, ReactJS, NextJS, BitBucket"
+      skills: "Python, Docker, REST, PostgreSQL, GitHub Actions"
     },
     {
-      title: "Software Engineer Intern I",
-      company: "COGNIZANT TECHNOLOGY SOLUTIONS",
-      period: "Jan 2021 - May 2021",
-      techAchievements: [
-        "Improved Query Resolution Time from 2s to 900ms by restructuring MySQL database for JOIN heavy queries involving analyzing API query logs"
-      ],
-      nonTechAchievements: [
-        "Optimized database performance, making data retrieval more than twice as fast by analyzing usage patterns and restructuring data storage"
-      ],
-      skills: "MySQL, PostgreSQL, Python, Java"
-    },
-    {
-      title: "Software Engineer",
+      title: "Founding Software Engineer",
       company: "DOLPHIN INDUSTRIES",
-      period: "Jun 2020 - Jul 2021",
+      period: "Jan 2020 – Mar 2022",
       techAchievements: [
-        "Designed and engineered an internal company portal with an intuitive UI and a secure, role-based database access, integrating VPN setup using OpenVPN on 2 Linux Debian Servers for local network implementation for 30-40 on premise devices",
-        "Built a robust inventory management system with CRUD operations on MySQL Server, real-time inventory tracking with barcode scanning, automated restocking alerts, reducing manual efforts by 80% and improving operational efficiency",
-        "Designed interactive sales dashboards cutting report generation time from hours to under seconds, improving business decision making"
+        "Launched the company's first enterprise sales website for a Windows-focused business serving hospitals, hotels, and commercial builders; integrated clickstream analytics (Python, Django) and heatmaps that generated actionable insights and boosted lead conversions by 25%.",
+        "Designed, implemented, and deployed a centralized inventory portal (Python Django, MySQL, Nginx) with role-based access controls and an intuitive UI; managed 350+ hardware SKUs across 3 manufacturing units, automated stock alerts, and eliminated outages entirely.",
+        "Built and rolled out employee payroll & billing software from scratch with secure role-based permissions and a streamlined UI, cutting manual processing time by 70% and eliminating reconciliation errors.",
+        "Established and maintained a hybrid infrastructure across on-prem Debian servers and AWS EC2/RDS, implementing secure snapshot backups, disaster recovery readiness, and high availability for mission-critical workloads.",
+        "Recruited, grew, and mentored a team of 10 engineers over 2 years while setting up peer code reviews, documentation standards, and Git workflows, alongside agile sprint planning and engineering best practices to drive scalable product development."
       ],
       nonTechAchievements: [
-        "Created a comprehensive internal company portal with user-friendly interface and secure access controls, including secure network setup for 30-40 office devices",
-        "Developed a complete inventory management system with barcode scanning and automatic alerts, reducing manual work by 80% and streamlining operations",
-        "Built interactive sales reporting dashboards that generate reports instantly instead of taking hours, enabling faster business decisions"
+        "Launched the company's first enterprise sales website serving hospitals, hotels, and commercial builders, implementing user behavior analytics that increased lead conversions by 25%.",
+        "Created a comprehensive inventory management system handling 350+ products across 3 manufacturing locations, completely eliminating system downtime and automating stock management.",
+        "Developed employee payroll and billing software from the ground up, reducing manual processing time by 70% and eliminating calculation errors.",
+        "Built and maintained a robust hybrid technology infrastructure combining on-premise and cloud solutions, ensuring high availability and disaster recovery for critical business operations.",
+        "Grew and led a team of 10 engineers over 2 years, establishing development best practices, code quality standards, and agile workflows that enabled scalable product development."
       ],
-      skills: "Node.js, HTML, CSS, JavaScript, BASH, OpenVPN, WebSockets, Linux"
+      skills: "Python, Django, MySQL, Bash, Nginx, AWS (EC2, RDS), Debian, Git"
     }
   ];
 
