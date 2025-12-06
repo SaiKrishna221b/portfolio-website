@@ -87,7 +87,7 @@ export default function Hero() {
               transition={{ duration: 0.8, delay: 1.2 }}
               className="location"
             >
-              San jose, CA
+              San Jose, CA
             </motion.p>
           </motion.div>
         </div>
