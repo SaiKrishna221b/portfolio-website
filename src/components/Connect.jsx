@@ -1,6 +1,30 @@
 import { motion } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
 
 const Connect = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef(null);
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const dismiss = (event) => {
+      if (!containerRef.current?.contains(event.target)) setIsOpen(false);
+    };
+    const escape = (event) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+        buttonRef.current?.focus();
+      }
+    };
+    document.addEventListener('pointerdown', dismiss);
+    document.addEventListener('keydown', escape);
+    return () => {
+      document.removeEventListener('pointerdown', dismiss);
+      document.removeEventListener('keydown', escape);
+    };
+  }, [isOpen]);
+
   const links = [
     {
       name: 'Email',
@@ -22,11 +46,20 @@ const Connect = () => {
   return (
     <motion.div 
       className="connect-container"
+      ref={containerRef}
       initial="hidden"
-      whileHover="visible"
+      animate={isOpen ? 'visible' : 'hidden'}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setIsOpen(false);
+      }}
     >
       <motion.button
         className="connect-button"
+        ref={buttonRef}
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls="contact-links"
+        onClick={() => setIsOpen(open => !open)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
@@ -35,9 +68,10 @@ const Connect = () => {
       
       <motion.div
         className="dropdown-menu"
+        id="contact-links"
         variants={{
-          hidden: { opacity: 0, y: -10, display: 'none' },
-          visible: { opacity: 1, y: 0, display: 'block' }
+          hidden: { opacity: 0, y: -10, display: 'none', pointerEvents: 'none' },
+          visible: { opacity: 1, y: 0, display: 'block', pointerEvents: 'auto' }
         }}
         transition={{ duration: 0.2 }}
       >

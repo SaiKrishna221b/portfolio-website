@@ -1,0 +1,269 @@
+/* Avoid a full-viewport backdrop blur on every scrolling section. Individual
+   cards retain their styling without repeatedly filtering the animated canvas. */
+.card-section, .card-section:first-child {
+  backdrop-filter: none;
+}
+
+/* Shared sizing: content must be allowed to shrink inside flex/grid layouts. */
+.section-content, .personal-info, .tab-content, .radar-chart-container,
+.info-cards-container, .about-content-split {
+  min-width: 0;
+}
+
+.nav-links {
+  flex-wrap: wrap;
+}
+
+.hero {
+  height: auto;
+  min-height: 100svh;
+  padding-block: 4rem;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.cards-container {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+.about-content-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 2rem;
+}
+
+.radar-chart-container, .info-cards-container {
+  height: auto;
+}
+
+.radar-chart {
+  width: 100%;
+  padding: 0;
+}
+
+.radar-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.info-card {
+  max-width: none;
+  max-height: none;
+}
+
+.info-card p {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+}
+
+.card-actions {
+  position: static;
+  align-self: flex-end;
+  padding-top: 1rem;
+}
+
+.view-text-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.dropdown-menu {
+  background: rgba(10, 15, 25, 0.97);
+  max-width: calc(100vw - 2rem);
+}
+
+@media (max-width: 1024px) {
+  /* Document scrolling avoids nested viewport clipping in mobile Safari. */
+  .sections-container {
+    height: auto;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .card-section {
+    padding: 2rem max(1rem, env(safe-area-inset-right)) 2rem max(1rem, env(safe-area-inset-left));
+    min-height: auto;
+    scroll-margin-top: 5rem;
+  }
+
+  .section {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  .section-content {
+    padding: 0;
+  }
+
+  .section h2 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin: 0 0 2rem;
+  }
+
+  .about-content-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .radar-chart-container {
+    width: 100%;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .info-cards-container {
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .experience-container {
+    flex-direction: column;
+    min-height: 0;
+    gap: 1rem;
+  }
+
+  .tabs-container {
+    min-width: 0;
+    border-right: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .tab-content {
+    padding: 1rem;
+  }
+
+  .cards-container {
+    padding: 0;
+    gap: 1rem;
+  }
+
+  .hero-container {
+    padding: 0;
+  }
+
+  .hero-content-wrapper {
+    gap: 0;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.3rem, 4vw, 2rem);
+  }
+
+  .nav-links {
+    gap: 0.75rem;
+    margin-top: 0;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    min-height: 44px;
+  }
+
+  .connect-container {
+    top: max(0.75rem, env(safe-area-inset-top));
+    right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-block: 4rem 1rem;
+  }
+
+  .hero-title {
+    margin-block: 1rem;
+  }
+
+  .research-line {
+    font-size: 1rem;
+  }
+
+  .hero .experience-list {
+    gap: 0.75rem;
+  }
+
+  .experience-list span:not(:last-child)::after {
+    content: none;
+  }
+
+  .tabs-container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .education-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .experience-details h3 {
+    font-size: 1.4rem;
+  }
+
+  .experience-details h4 {
+    font-size: 1rem;
+  }
+}
+
+/* Framer Motion owns transform; center the glow without a competing translate. */
+.title-glow {
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  pointer-events: none;
+}
+
+.name-container {
+  isolation: isolate;
+}
+
+.mobile-skills {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  /* The radar's SVG labels become too small on phones; use the same data as text. */
+  .radar-chart {
+    display: none;
+  }
+
+  .mobile-skills {
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .mobile-skills li {
+    padding: 1rem;
+    border: 1px solid rgba(0, 255, 245, 0.2);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .mobile-skills h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    color: #00fff5;
+  }
+
+  .mobile-skills p {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .mobile-skills meter {
+    width: 75%;
+    margin-right: 0.75rem;
+  }
+}

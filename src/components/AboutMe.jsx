@@ -192,6 +192,16 @@ const AboutMe = () => {
         >
           {/* Left side - Radar Chart */}
           <div className="radar-chart-container">
+            <ul className="mobile-skills" aria-label="Technical skills">
+              {skills.map(skill => (
+                <li key={skill.name}>
+                  <h3>{skill.name}</h3>
+                  <p>{skill.description.split('\n').join(' · ')}</p>
+                  <meter min="0" max={maxLevel} value={skill.level} aria-label={`${skill.name} proficiency`} />
+                  <span>{skill.level} / {maxLevel}</span>
+                </li>
+              ))}
+            </ul>
             <motion.div
               className="radar-chart"
               initial={{ opacity: 0, scale: 0.8 }}

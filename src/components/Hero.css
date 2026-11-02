@@ -118,7 +118,7 @@
   box-shadow: 0 0 30px rgba(0, 255, 245, 0.4);
 }
 
-reduce.experience-section {
+.hero .experience-section {
   text-align: center;
   margin: 1.5rem 0;
 }

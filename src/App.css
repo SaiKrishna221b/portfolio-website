@@ -110,11 +110,7 @@ p, li, .education-details, .experience-details {
     inset 0 0 40px rgba(0, 255, 245, 1.0);
 }
 
-.connect-container:hover .dropdown-menu {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
+
 
 .dropdown-menu {
   position: absolute;

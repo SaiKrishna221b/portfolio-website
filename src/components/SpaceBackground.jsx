@@ -90,7 +90,10 @@ export default function SpaceBackground() {
     };
 
     resizeCanvas();
-    starsRef.current = Array(900).fill().map(createStar);
+    // Keep density proportional to the viewport instead of drawing 900 gradients
+    // per frame even on a small phone. The cap also limits desktop rendering work.
+    const starCount = Math.min(360, Math.max(100, Math.round(canvas.width * canvas.height / 3500)));
+    starsRef.current = Array.from({ length: starCount }, createStar);
     window.addEventListener('resize', resizeCanvas);
     window.addEventListener('mousemove', handleMouseMove);
     animate();

@@ -7,6 +7,7 @@ import Certifications from './components/Certifications';
 import SpaceBackground from './components/SpaceBackground';
 import Connect from './components/Connect';
 import './App.css';
+import './responsive.css';
 
 function App() {
   return (

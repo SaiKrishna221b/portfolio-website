@@ -1,11 +1,9 @@
 import { motion } from 'framer-motion';
-import SpaceBackground from './SpaceBackground';
 import './Hero.css';
 
 export default function Hero() {
   return (
     <section className="hero">
-      <SpaceBackground />
       <div className="hero-container">
         <div className="hero-content-wrapper">
           <motion.div
@@ -102,7 +100,7 @@ export default function Hero() {
           <motion.a href="#education" className="nav-link">Education</motion.a>
           <motion.a href="#projects" className="nav-link">Projects</motion.a>
           <motion.a href="#certifications" className="nav-link">Certifications</motion.a>
-          <motion.button className="nav-link">About Me</motion.button>
+          <motion.a href="#about" className="nav-link">About Me</motion.a>
         </motion.div>
       </div>
     </section>
