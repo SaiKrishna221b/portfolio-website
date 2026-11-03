@@ -225,45 +225,47 @@
   isolation: isolate;
 }
 
-.mobile-skills {
+/* The single star canvas sits above the page background and below its content. */
+.app {
+  isolation: isolate;
+}
+
+.card-section:first-child {
+  background: transparent;
+}
+
+.radar-chart .radar-chart-compact,
+.radar-skill-details {
   display: none;
 }
 
 @media (max-width: 600px) {
-  /* The radar's SVG labels become too small on phones; use the same data as text. */
-  .radar-chart {
+  .radar-chart .radar-chart-full {
     display: none;
   }
 
-  .mobile-skills {
+  .radar-chart .radar-chart-compact {
+    display: block;
+  }
+
+  .radar-skill-details {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
-    width: 100%;
-    padding: 0;
-    margin: 0;
     list-style: none;
-  }
-
-  .mobile-skills li {
+    margin: 0;
     padding: 1rem;
-    border: 1px solid rgba(0, 255, 245, 0.2);
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.04);
   }
 
-  .mobile-skills h3 {
-    margin: 0 0 0.5rem;
-    font-size: 1rem;
+  .radar-skill-details h3 {
+    margin: 0 0 0.4rem;
+    font-size: 0.85rem;
     color: #00fff5;
   }
 
-  .mobile-skills p {
-    margin: 0 0 0.75rem;
-    font-size: 0.9rem;
-  }
-
-  .mobile-skills meter {
-    width: 75%;
-    margin-right: 0.75rem;
+  .radar-skill-details p {
+    margin: 0;
+    font-size: 0.8rem;
+    overflow-wrap: anywhere;
   }
 }

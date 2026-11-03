@@ -16,7 +16,7 @@ const AboutMe = () => {
   const rightSideContent = [
     {
       title: "Experience Highlights",
-      content: "2+ years at Cognizant Technology Solutions building enterprise-scale microservices and cloud infrastructure for Fortune 500 clients."
+      content: "Learning experience at Cognizant Technology Solutions building enterprise-scale microservices and cloud infrastructure for Fortune 500 clients."
     },
     {
       title: "Current Focus",
@@ -38,20 +38,20 @@ const AboutMe = () => {
   const radius = 126;
 
   // Calculate points for hexagon shape (6 skills now)
-  const getPoint = (index, level = maxLevel) => {
+  const getPoint = (index, level = maxLevel, compact = false) => {
     const angle = (index * 2 * Math.PI) / skills.length - Math.PI / 2;
-    const distance = (level / maxLevel) * radius;
+    const distance = (level / maxLevel) * (compact ? 110 : radius);
     return {
-      x: centerX + distance * Math.cos(angle),
-      y: centerY + distance * Math.sin(angle)
+      x: (compact ? 200 : centerX) + distance * Math.cos(angle),
+      y: (compact ? 200 : centerY) + distance * Math.sin(angle)
     };
   };
 
   // Generate grid lines (concentric hexagons)
-  const generateGridLines = () => {
+  const generateGridLines = (compact = false) => {
     const lines = [];
     for (let level = 1; level <= maxLevel; level++) {
-      const points = skills.map((_, index) => getPoint(index, level));
+      const points = skills.map((_, index) => getPoint(index, level, compact));
       const pathData = `M ${points[0].x} ${points[0].y} ` + 
         points.slice(1).map(p => `L ${p.x} ${p.y}`).join(' ') + ' Z';
       
@@ -69,14 +69,14 @@ const AboutMe = () => {
   };
 
   // Generate axis lines
-  const generateAxisLines = () => {
+  const generateAxisLines = (compact = false) => {
     return skills.map((_, index) => {
-      const endPoint = getPoint(index, maxLevel);
+      const endPoint = getPoint(index, maxLevel, compact);
       return (
         <line
           key={index}
-          x1={centerX}
-          y1={centerY}
+          x1={compact ? 200 : centerX}
+          y1={compact ? 200 : centerY}
           x2={endPoint.x}
           y2={endPoint.y}
           stroke="rgba(255, 255, 255, 0.3)"
@@ -87,8 +87,8 @@ const AboutMe = () => {
   };
 
   // Generate skill level polygon
-  const generateSkillPolygon = () => {
-    const points = skills.map((skill, index) => getPoint(index, skill.level));
+  const generateSkillPolygon = (compact = false) => {
+    const points = skills.map((skill, index) => getPoint(index, skill.level, compact));
     const pathData = `M ${points[0].x} ${points[0].y} ` + 
       points.slice(1).map(p => `L ${p.x} ${p.y}`).join(' ') + ' Z';
     
@@ -106,9 +106,9 @@ const AboutMe = () => {
   };
 
   // Generate skill points
-  const generateSkillPoints = () => {
+  const generateSkillPoints = (compact = false) => {
     return skills.map((skill, index) => {
-      const point = getPoint(index, skill.level);
+      const point = getPoint(index, skill.level, compact);
       return (
         <motion.circle
           key={index}
@@ -192,16 +192,6 @@ const AboutMe = () => {
         >
           {/* Left side - Radar Chart */}
           <div className="radar-chart-container">
-            <ul className="mobile-skills" aria-label="Technical skills">
-              {skills.map(skill => (
-                <li key={skill.name}>
-                  <h3>{skill.name}</h3>
-                  <p>{skill.description.split('\n').join(' · ')}</p>
-                  <meter min="0" max={maxLevel} value={skill.level} aria-label={`${skill.name} proficiency`} />
-                  <span>{skill.level} / {maxLevel}</span>
-                </li>
-              ))}
-            </ul>
             <motion.div
               className="radar-chart"
               initial={{ opacity: 0, scale: 0.8 }}
@@ -209,13 +199,39 @@ const AboutMe = () => {
               transition={{ duration: 1, delay: 0.6 }}
               onViewportEnter={() => setIsVisible(true)}
             >
-              <svg width="600" height="600" viewBox="0 0 600 600">
+              <svg className="radar-chart-full" width="600" height="600" viewBox="0 0 600 600" role="img" aria-label="Technical skills radar chart">
+                <title>Technical skills radar chart</title>
                 {generateGridLines()}
                 {generateAxisLines()}
                 {generateSkillPolygon()}
                 {generateSkillPoints()}
                 {generateLabels()}
               </svg>
+              <svg className="radar-chart-compact" viewBox="0 0 400 400" role="img" aria-label="Technical skills radar chart">
+                <title>Technical skills radar chart</title>
+                {generateGridLines(true)}
+                {generateAxisLines(true)}
+                {generateSkillPolygon(true)}
+                {generateSkillPoints(true)}
+                {skills.map((skill, index) => {
+                  const point = getPoint(index, 7, true);
+                  const [first, ...rest] = skill.name.split(' ');
+                  return (
+                    <text key={skill.name} x={point.x} y={point.y - (rest.length ? 5 : 0)} textAnchor="middle" fill="white" fontSize="16">
+                      <tspan x={point.x}>{first}</tspan>
+                      {rest.length > 0 && <tspan x={point.x} dy="19">{rest.join(' ')}</tspan>}
+                    </text>
+                  );
+                })}
+              </svg>
+              <ul className="radar-skill-details" aria-label="Technical skill details">
+                {skills.map(skill => (
+                  <li key={skill.name}>
+                    <h3>{skill.name}</h3>
+                    <p>{skill.description.split('\n').join(' · ')}</p>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           </div>
 
