@@ -16,6 +16,8 @@ export default function SpaceBackground() {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d', { alpha: false });
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    // A small touch viewport stays in phone mode in either orientation.
+    const phoneViewport = window.matchMedia('(pointer: coarse) and (max-width: 600px), (pointer: coarse) and (max-height: 600px)');
     let animationFrameId = null;
     let previousTime = null;
     let regionVisible = false;
@@ -49,6 +51,7 @@ export default function SpaceBackground() {
         type,
       };
     };
+    // Retain the same stars across resizing; only the active count changes.
     const stars = Array.from({ length: 900 }, createStar);
 
     const draw = elapsedSeconds => {
@@ -59,7 +62,9 @@ export default function SpaceBackground() {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       const smallStars = STAR_TYPES.map(() => new Path2D());
 
-      for (const star of stars) {
+      const starCount = phoneViewport.matches ? 300 : 900;
+      for (let index = 0; index < starCount; index++) {
+        const star = stars[index];
         // Match the original 60 Hz motion at any display refresh rate.
         star.z -= speed * elapsedSeconds;
         star.phase += 3 * elapsedSeconds;
@@ -113,6 +118,7 @@ export default function SpaceBackground() {
       syncAnimation();
     };
 
+    const refreshDensity = () => draw(0);
     const handleMouseMove = event => { mouse.x = event.clientX; mouse.y = event.clientY; };
     // Other sections have opaque backgrounds, so avoid rendering underneath them.
     const regions = document.querySelectorAll('.hero, .certifications-section');
@@ -135,6 +141,7 @@ export default function SpaceBackground() {
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     document.addEventListener('visibilitychange', syncAnimation);
     reducedMotion.addEventListener('change', syncAnimation);
+    phoneViewport.addEventListener('change', refreshDensity);
 
     return () => {
       observer.disconnect();
@@ -142,6 +149,7 @@ export default function SpaceBackground() {
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('visibilitychange', syncAnimation);
       reducedMotion.removeEventListener('change', syncAnimation);
+      phoneViewport.removeEventListener('change', refreshDensity);
       if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
     };
   }, []);

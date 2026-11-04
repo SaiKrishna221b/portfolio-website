@@ -58,3 +58,51 @@ test('hidden backgrounds stop repainting and reduced motion keeps a static starf
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await expect.poll(() => page.evaluate(() => window.__canvasWork.frames)).toBeGreaterThan(still + 3);
 });
+
+test('phone density survives rotation without resetting the stars', async ({ page, hasTouch }, testInfo) => {
+  await page.addInitScript(() => {
+    // Place every star inside the viewport so drawing counts reflect the full
+    // population, including both cached sprites and batched subpixel points.
+    Math.random = () => 0.5;
+    const fill = CanvasRenderingContext2D.prototype.fillRect;
+    CanvasRenderingContext2D.prototype.fillRect = function (...args) {
+      if (this.canvas.classList.contains('space-background')) {
+        window.__starFrame = { count: 0, firstX: null, width: this.canvas.width };
+      }
+      return fill.apply(this, args);
+    };
+    const record = (x, width) => {
+      const frame = window.__starFrame;
+      if (!frame) return;
+      frame.count++;
+      if (frame.firstX === null) frame.firstX = (x + width / 2) / frame.width;
+    };
+    const draw = CanvasRenderingContext2D.prototype.drawImage;
+    CanvasRenderingContext2D.prototype.drawImage = function (...args) {
+      if (this.canvas.classList.contains('space-background')) record(args[1], args[3]);
+      return draw.apply(this, args);
+    };
+    const rect = Path2D.prototype.rect;
+    Path2D.prototype.rect = function (...args) {
+      record(args[0], args[2]);
+      return rect.apply(this, args);
+    };
+  });
+  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  const expected = ['desktop', 'tablet'].includes(testInfo.project.name) ? 900 : 300;
+  await expect.poll(() => page.evaluate(() => window.__starFrame?.count)).toBe(expected);
+  await nextFrames(page, 12);
+  const before = await page.evaluate(() => ({ ...window.__starFrame }));
+  const viewport = page.viewportSize();
+  await page.setViewportSize({ width: viewport.height, height: viewport.width });
+  await expect.poll(() => page.evaluate(() => window.__starFrame?.width)).toBe(viewport.height);
+  await expect.poll(() => page.evaluate(() => window.__starFrame?.count)).toBe(expected);
+  // These stars move left as they approach. Resetting their depth would make
+  // their normalized position jump right to the initial value after rotation.
+  await expect.poll(() => page.evaluate(() => window.__starFrame.firstX)).toBeLessThan(before.firstX);
+  if (!hasTouch) {
+    await page.setViewportSize({ width: 430, height: 932 });
+    await expect.poll(() => page.evaluate(() => window.__starFrame?.width)).toBe(430);
+    expect(await page.evaluate(() => window.__starFrame.count)).toBe(900);
+  }
+});
