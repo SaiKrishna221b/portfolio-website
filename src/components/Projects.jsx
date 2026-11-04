@@ -38,9 +38,10 @@ const Projects = () => {
     <section className="section projects-section">
       <div className="section-content">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.3 }}
         >
           Projects{' '}
           <a 
@@ -67,9 +68,10 @@ const Projects = () => {
             <motion.div
               key={index}
               className="card certification-card"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.25, delay: Math.min(index, 3) * 0.04 }}
             >
               <h3>{project.title}</h3>
               <p className="tech-stack">{project.tech}</p>

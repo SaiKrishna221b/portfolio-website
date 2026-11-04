@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const AboutMe = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -100,7 +100,7 @@ const AboutMe = () => {
         strokeWidth="2"
         initial={{ pathLength: 0, opacity: 0 }}
         animate={isVisible ? { pathLength: 1, opacity: 1 } : { pathLength: 0, opacity: 0 }}
-        transition={{ duration: 2, ease: "easeInOut" }}
+        transition={{ duration: 0.5, ease: "easeInOut" }}
       />
     );
   };
@@ -120,7 +120,7 @@ const AboutMe = () => {
           strokeWidth="2"
           initial={{ scale: 0, opacity: 0 }}
           animate={isVisible ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 + index * 0.2 }}
+          transition={{ duration: 0.25, delay: index * 0.03 }}
         />
       );
     });
@@ -144,7 +144,7 @@ const AboutMe = () => {
             fontWeight="bold"
             initial={{ opacity: 0, y: 10 }}
             animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-            transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
+            transition={{ duration: 0.25, delay: index * 0.025 }}
           >
             {skill.name}
           </motion.text>
@@ -158,7 +158,7 @@ const AboutMe = () => {
               fontSize="9"
               initial={{ opacity: 0, y: 10 }}
               animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.5, delay: 1.2 + index * 0.1 + lineIndex * 0.05 }}
+              transition={{ duration: 0.25, delay: index * 0.025 + lineIndex * 0.015 }}
             >
               {line}
             </motion.text>
@@ -168,35 +168,34 @@ const AboutMe = () => {
     });
   };
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 500);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <section className="section about-section">
       <div className="section-content">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.3 }}
         >
           About Me
         </motion.h2>
         
         <motion.div 
           className="about-content-split"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.3, delay: 0.04 }}
         >
           {/* Left side - Radar Chart */}
           <div className="radar-chart-container">
             <motion.div
               className="radar-chart"
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.6 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.3 }}
               onViewportEnter={() => setIsVisible(true)}
             >
               <svg className="radar-chart-full" width="600" height="600" viewBox="0 0 600 600" role="img" aria-label="Technical skills radar chart">
@@ -241,9 +240,10 @@ const AboutMe = () => {
               <motion.div
                 key={index}
                 className="info-card"
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 12 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 + index * 0.2 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.3, delay: Math.min(index, 3) * 0.04 }}
               >
                 <h3>{item.title}</h3>
                 <p>{item.content}</p>

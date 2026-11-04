@@ -21,9 +21,10 @@ const Education = () => {
     <section className="section education-section">
       <div className="section-content">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.3 }}
         >
           Education
         </motion.h2>
@@ -32,9 +33,10 @@ const Education = () => {
             <motion.div
               key={index}
               className="education-card"
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -12 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.25, delay: Math.min(index, 3) * 0.04 }}
             >
               <div className="education-header">
                 <div className="education-title">

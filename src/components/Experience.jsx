@@ -84,9 +84,10 @@ const Experience = () => {
     <section className="section experience-section">
       <div className="section-content">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.3 }}
         >
           Experience
         </motion.h2>
@@ -94,9 +95,10 @@ const Experience = () => {
         {/* Toggle Button */}
         <motion.div 
           className="experience-toggle"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.3, delay: 0.04 }}
         >
           <button 
             className={`toggle-btn ${isTechMode ? 'active' : ''}`}
@@ -119,9 +121,10 @@ const Experience = () => {
                 key={index}
                 className={`tab ${activeTab === index ? 'active' : ''}`}
                 onClick={() => setActiveTab(index)}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: -12 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.25, delay: Math.min(index, 3) * 0.04 }}
               >
                 <h3>{exp.title}</h3>
                 <p>{exp.company}</p>
@@ -132,9 +135,9 @@ const Experience = () => {
           <motion.div
             className="tab-content"
             key={`${activeTab}-${isTechMode}`}
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 12 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.25 }}
           >
             <div className="experience-details">
               <h3>{experiences[activeTab].title}</h3>

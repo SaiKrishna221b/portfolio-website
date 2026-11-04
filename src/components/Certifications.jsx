@@ -38,9 +38,10 @@ const Certifications = () => {
     <section className="section certifications-section">
       <div className="section-content">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.3 }}
         >
           Certifications
         </motion.h2>
@@ -49,9 +50,10 @@ const Certifications = () => {
             <motion.div
               key={index}
               className="card certification-card"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 0.25, delay: Math.min(index, 3) * 0.04 }}
             >
               <h3>{cert.name}</h3>
               <p className="date">{cert.date}</p>

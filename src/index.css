@@ -36,3 +36,8 @@ button, a {
   outline: 2px solid var(--accent-color);
   outline-offset: 4px;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .connect-button::before { animation: none; }
+}

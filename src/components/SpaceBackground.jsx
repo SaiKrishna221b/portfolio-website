@@ -1,105 +1,148 @@
 import { useEffect, useRef } from 'react';
 import './SpaceBackground.css';
 
+const STAR_TYPES = [
+  { color: '#FFFFFF', size: 1, twinkle: 0.7 },
+  { color: '#FFE66D', size: 2, twinkle: 0.5 },
+  { color: '#4ECDC4', size: 1.5, twinkle: 0.6 },
+  { color: '#FF6B6B', size: 1.8, twinkle: 0.8 },
+  { color: '#FF8364', size: 1.2, twinkle: 0.4 },
+];
+
 export default function SpaceBackground() {
   const canvasRef = useRef(null);
-  const starsRef = useRef([]);
-  const mouseRef = useRef({ x: 0, y: 0 });
-  const baseSpeedRef = useRef(0.4);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    let animationFrameId;
+    const ctx = canvas.getContext('2d', { alpha: false });
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let animationFrameId = null;
+    let previousTime = null;
+    let regionVisible = false;
+    const mouse = { x: 0, y: 0 };
 
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
+    // Bake each color once, instead of allocating 900 gradients on every frame.
+    const sprites = STAR_TYPES.map(type => {
+      const sprite = document.createElement('canvas');
+      sprite.width = sprite.height = 32;
+      const paint = sprite.getContext('2d');
+      const gradient = paint.createRadialGradient(16, 16, 0, 16, 16, 48);
+      gradient.addColorStop(0, type.color);
+      gradient.addColorStop(1, 'transparent');
+      paint.fillStyle = gradient;
+      paint.beginPath();
+      paint.arc(16, 16, 16, 0, Math.PI * 2);
+      paint.fill();
+      return sprite;
+    });
 
     const createStar = () => {
-      const starTypes = [
-        { color: '#FFFFFF', size: 1, twinkle: 0.7, trail: 0.2 },    // White stars
-        { color: '#FFE66D', size: 2, twinkle: 0.5, trail: 0.8 },     // Warm yellow
-        { color: '#4ECDC4', size: 1.5, twinkle: 0.6, trail: 0.4 },   // Turquoise
-        { color: '#FF6B6B', size: 1.8, twinkle: 0.8, trail: 0.6 },   // Coral
-        { color: '#FF8364', size: 1.2, twinkle: 0.4, trail: 0.3 }    // Peach
-      ];
-
-      const type = starTypes[Math.floor(Math.random() * starTypes.length)];
+      const type = Math.floor(Math.random() * STAR_TYPES.length);
       const angle = Math.random() * Math.PI * 2;
-      const radiusBias = Math.pow(Math.random(), 0.5);
-      const radius = (canvas.width / 2) * (0.3 + radiusBias * 0.7);
-      
+      const radius = 0.3 + Math.sqrt(Math.random()) * 0.7;
       return {
-        x: canvas.width/2 + radius * Math.cos(angle),
-        y: canvas.height/2 + radius * Math.sin(angle),
+        // Relative coordinates preserve the pattern when the viewport changes.
+        x: radius * Math.cos(angle),
+        y: radius * Math.sin(angle),
         z: Math.random() * 2000,
-        twinklePhase: Math.random() * Math.PI * 2,
-        ...type
+        phase: Math.random() * Math.PI * 2,
+        type,
       };
     };
+    const stars = Array.from({ length: 900 }, createStar);
 
-    const moveStars = () => {
+    const draw = elapsedSeconds => {
       const centerX = canvas.width / 2;
       const centerY = canvas.height / 2;
-      const mouseX = mouseRef.current.x - centerX;
-      const mouseY = mouseRef.current.y - centerY;
-      
-      const speed = baseSpeedRef.current * (1 + Math.sqrt(mouseX ** 2 + mouseY ** 2) / 1000);
-
-      starsRef.current.forEach(star => {
-        star.z -= speed * 2;
-        if (star.z <= 1) {
-          Object.assign(star, createStar(), { z: 2000 });
-        }
-      });
-    };
-
-    const drawStars = () => {
+      const speed = 48 * (1 + Math.hypot(mouse.x - centerX, mouse.y - centerY) / 1000);
       ctx.fillStyle = '#000000';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const smallStars = STAR_TYPES.map(() => new Path2D());
 
-      starsRef.current.forEach(star => {
-        const x = (star.x - canvas.width/2) * (400 / star.z) + canvas.width/2;
-        const y = (star.y - canvas.height/2) * (400 / star.z) + canvas.height/2;
+      for (const star of stars) {
+        // Match the original 60 Hz motion at any display refresh rate.
+        star.z -= speed * elapsedSeconds;
+        star.phase += 3 * elapsedSeconds;
+        if (star.z <= 1) Object.assign(star, createStar(), { z: 2000 });
         const scale = 400 / star.z;
-
-        star.twinklePhase += 0.05;
-        const twinkleIntensity = Math.sin(star.twinklePhase) * star.twinkle;
-
-        const gradient = ctx.createRadialGradient(x, y, 0, x, y, star.size * 3 * scale);
-        gradient.addColorStop(0, star.color);
-        gradient.addColorStop(1, 'transparent');
-        
-        ctx.fillStyle = gradient;
-        ctx.beginPath();
-        ctx.arc(x, y, star.size * (1 + twinkleIntensity * 0.3) * scale, 0, Math.PI * 2);
-        ctx.fill();
+        const x = star.x * centerX * scale + centerX;
+        const y = star.y * centerX * scale + centerY;
+        const type = STAR_TYPES[star.type];
+        const radius = type.size * (1 + Math.sin(star.phase) * type.twinkle * 0.3) * scale;
+        if (x + radius < 0 || x - radius > canvas.width || y + radius < 0 || y - radius > canvas.height) continue;
+        // At subpixel sizes a glow is indistinguishable from a point. Batch these
+        // by color, keeping every star without hundreds of tiny image draws.
+        if (radius < 0.6) {
+          smallStars[star.type].rect(x - radius, y - radius, radius * 2, radius * 2);
+          continue;
+        }
+        ctx.drawImage(sprites[star.type], x - radius, y - radius, radius * 2, radius * 2);
+      }
+      ctx.globalAlpha = 0.6;
+      smallStars.forEach((points, index) => {
+        ctx.fillStyle = STAR_TYPES[index].color;
+        ctx.fill(points);
       });
+      ctx.globalAlpha = 1;
     };
 
-    const animate = () => {
-      moveStars();
-      drawStars();
+    const animate = time => {
+      const elapsed = previousTime === null ? 0 : Math.min((time - previousTime) / 1000, 0.1);
+      previousTime = time;
+      draw(elapsed);
       animationFrameId = requestAnimationFrame(animate);
     };
 
-    const handleMouseMove = (e) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
+    const syncAnimation = () => {
+      if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
+      animationFrameId = null;
+      previousTime = null;
+      if (!document.hidden && regionVisible && !reducedMotion.matches) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
     };
 
-    resizeCanvas();
-    // Preserve the original visual density with one shared animation canvas.
-    starsRef.current = Array.from({ length: 900 }, createStar);
-    window.addEventListener('resize', resizeCanvas);
-    window.addEventListener('mousemove', handleMouseMove);
-    animate();
+    const resize = () => {
+      // CSS viewport sizing stays stable while mobile browser toolbars move.
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      if (canvas.width === width && canvas.height === height) return;
+      canvas.width = width;
+      canvas.height = height;
+      draw(0);
+      syncAnimation();
+    };
+
+    const handleMouseMove = event => { mouse.x = event.clientX; mouse.y = event.clientY; };
+    // Other sections have opaque backgrounds, so avoid rendering underneath them.
+    const regions = document.querySelectorAll('.hero, .certifications-section');
+    const visibleRegions = new Set();
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) visibleRegions.add(entry.target);
+        else visibleRegions.delete(entry.target);
+      }
+      const visible = visibleRegions.size > 0;
+      if (visible !== regionVisible) {
+        regionVisible = visible;
+        syncAnimation();
+      }
+    });
+    regions.forEach(region => observer.observe(region));
+    resize();
+    draw(0);
+    window.addEventListener('resize', resize);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener('visibilitychange', syncAnimation);
+    reducedMotion.addEventListener('change', syncAnimation);
 
     return () => {
-      window.removeEventListener('resize', resizeCanvas);
+      observer.disconnect();
+      window.removeEventListener('resize', resize);
       window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
+      document.removeEventListener('visibilitychange', syncAnimation);
+      reducedMotion.removeEventListener('change', syncAnimation);
+      if (animationFrameId !== null) cancelAnimationFrame(animationFrameId);
     };
   }, []);
 

@@ -53,7 +53,7 @@ check of Chrome on iOS, including its browser toolbars and safe areas.
 In a restricted environment with Chromium already installed, run the Chromium projects:
 
 ```sh
-CHROMIUM_PATH=/usr/bin/chromium npm test -- --project=iphone-se --project=iphone-13 --project=iphone-landscape --project=tablet --project=iphone-plus --project=desktop
+CHROMIUM_PATH=/usr/bin/chromium npm test -- --project=iphone-se --project=iphone-13 --project=iphone-landscape --project=tablet --project=iphone-14-pro-max --project=desktop
 ```
 
 If browser downloads use a custom cache, set `PLAYWRIGHT_BROWSERS_PATH` consistently

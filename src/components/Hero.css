@@ -106,7 +106,7 @@
   font-size: 1.1rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, translate 0.18s ease;
   backdrop-filter: blur(10px);
   text-shadow: 0 0 10px rgba(0, 255, 245, 0.3);
   box-shadow: 0 0 20px rgba(0, 255, 245, 0.1);
@@ -175,4 +175,33 @@
   text-shadow: 0 0 10px rgba(0, 255, 245, 0.4);
   font-weight: 400;
   text-align: center;
+}
+/* Composited CSS pulses keep the glow without a JavaScript loop per element. */
+.title-glow {
+  animation: cyan-glow 2s ease-in-out infinite;
+}
+
+.pink-glow {
+  animation: pink-glow 3s ease-in-out infinite;
+}
+
+.hero:not(.is-in-view) .title-glow,
+.hero:not(.is-in-view) .pink-glow {
+  animation-play-state: paused;
+}
+
+@keyframes cyan-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes pink-glow {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-glow, .pink-glow {
+    animation: none;
+  }
 }

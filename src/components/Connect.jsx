@@ -75,7 +75,7 @@ const Connect = () => {
         }}
         transition={{ duration: 0.2 }}
       >
-        {links.map((link, index) => (
+        {links.map((link) => (
           <motion.a
             key={link.name}
             href={link.url}
@@ -86,10 +86,9 @@ const Connect = () => {
               hidden: { opacity: 0 },
               visible: { 
                 opacity: 1,
-                transition: { delay: index * 0.1 }
+                transition: { duration: 0.15 }
               }
             }}
-            whileHover={{ color: '#00fff5' }}
           >
             <span className="icon">{link.icon}</span>
             {link.name}

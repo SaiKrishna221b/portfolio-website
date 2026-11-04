@@ -14,7 +14,7 @@ export default defineConfig({
     { name: 'iphone-13', use: { ...devices['iPhone 13'], ...chromium } },
     { name: 'iphone-landscape', use: { ...devices['iPhone 13 landscape'], ...chromium } },
     { name: 'tablet', use: { ...devices['iPad Mini'], ...chromium } },
-    { name: 'iphone-plus', use: { ...devices['iPhone 13'], viewport: { width: 430, height: 932 }, ...chromium } },
+    { name: 'iphone-14-pro-max', use: { ...devices['iPhone 14 Pro Max'], ...chromium } },
     { name: 'desktop', use: { ...devices['Desktop Chrome'], ...chromium } },
     { name: 'safari-iphone', use: { ...devices['iPhone 13'], defaultBrowserType: 'webkit' } },
   ],
