@@ -48,7 +48,6 @@ export default function Hero() {
                 <span>Distributed Systems 🌐 </span>
                 <span>Databases  💾</span>
                 <span>API Security 🔒 </span>
-                <span>Making people laugh in boring meetings 😄 </span>
               </div>
             </motion.div>
 
